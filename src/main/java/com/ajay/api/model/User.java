@@ -10,6 +10,13 @@ public class User {
 		super();
 	}
 
+	public User(Integer id, String name, String role) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.role = role;
+	}
+
 	public Integer getId() {
 		return id;
 	}

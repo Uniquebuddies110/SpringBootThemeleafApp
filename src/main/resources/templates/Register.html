@@ -27,7 +27,8 @@
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="#">Register</a></li>
-				<li class="nav-item"><a class="nav-link" href="#" th:href="@{viewAll}">View All</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"
+					th:href="@{viewAll}">View All</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -38,7 +39,8 @@
 			<div class="col-sm-8">
 				<div class="card">
 					<div class="card-body">
-						<form action="#" method="post" th:action="@{save}" th:object="${user}">
+						<form action="#" method="post" th:action="@{save}"
+							th:object="${user}">
 							<h4 class="card-title">Register Page</h4>
 							<hr />
 							<div class="row">
@@ -51,9 +53,9 @@
 								<div class="col-sm-2">Role</div>
 								<div class="col-sm-8">
 									<select th:field="*{role}">
-									<option value="">Select Role</option>
-									<option value="STUDENT">Student</option>
-									<option value="TEACHER">Teacher</option>
+										<option value="">Select Role</option>
+										<option value="STUDENT">Student</option>
+										<option value="TEACHER">Teacher</option>
 									</select>
 								</div>
 							</div>
@@ -70,9 +72,14 @@
 		</div>
 	</div>
 
-	<div class="jumbotron text-center" style="margin-bottom: 0">
-		<p>Vikalp Enterprises pvt. ltd. copyrights @ 2019-20</p>
-	</div>
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; 2019-20
+				Vikalp Enterprises pvt. ltd.</p>
+		</div>
+		<!-- /.container -->
+	</footer>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
