@@ -1,46 +1,42 @@
 package com.ajay.api.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ajay.api.model.User;
+import com.ajay.api.repo.UserRepository;
 
 @Service
 public class UserService {
+	
+	private final static Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
-	// Store Users and initiate values
-//	private List<User> users = List.of(new User(1,"Ajay","STUDENT"),new User(2,"Vijay","TEACHER"),new User(3,"Keshav","STUDENT"));
-	private List<User> users;
-
-	public UserService() {
-		users = new ArrayList<>();
-		users.add(new User(1, "Ajay", "STUDENT"));
-		users.add(new User(2, "Vijay", "TEACHER"));
-		users.add(new User(3, "Keshav", "STUDENT"));
-	}
-
-	// Sequence
-	volatile Integer id = 4;
+	@Autowired
+	private UserRepository userRepo;
 
 	public List<User> getAllUsers() {
-		return users;
+		LOGGER.info("UserService.getAllUsers()");
+		return userRepo.findAll();
 	}
 
 	public User getUserById(Integer id) {
-		User existUser = null;
-		for (User user : users) {
-			if (user.getId() == id)
-				existUser = user;
-		}
-		return existUser;
+		LOGGER.info("UserService.getUserById()");
+		Optional<User> optional = userRepo.findById(id);
+		if (optional.isPresent())
+			return optional.get();
+		else
+			LOGGER.error("/////--------No Data Found For Id-----------/////////");
+			return null;
 	}
 
 	public String addUser(User user) {
-		user.setId(id);
-		users.add(user);
-		id++;
+		LOGGER.info("UserService.addUser()");
+		user = userRepo.save(user);
 		System.out.println(user);
 		return "User '" + user.getName() + "' has been added";
 	}

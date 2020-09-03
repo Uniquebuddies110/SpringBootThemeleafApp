@@ -48,7 +48,7 @@ public class UserPdfExporter {
 		for (User user : listUsers) {
 			table.addCell(String.valueOf(user.getId()));
 			table.addCell(user.getName());
-			table.addCell(user.getRole());
+			table.addCell(String.valueOf(user.getRoles()));
 		}
 	}
 
@@ -63,7 +63,7 @@ public class UserPdfExporter {
 		font.setColor(Color.blue);
 		font.setSize(18);
 
-		Paragraph title = new Paragraph("Sample File Data.", font);
+		Paragraph title = new Paragraph("List of Users", font);
 		title.setAlignment(Paragraph.ALIGN_CENTER);
 		document.add(title);
 

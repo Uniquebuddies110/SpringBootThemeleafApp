@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -27,18 +29,21 @@ import com.lowagie.text.DocumentException;
 @RequestMapping("/api")
 public class HomeController {
 
+	private final static Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+	
 	@Autowired
 	private UserService userService;
 
 	@RequestMapping("/home")
 	public String homePage(Model m) {
+		LOGGER.info("HomeController.homePage()");
 		m.addAttribute("msg", "Welcome From Home Controller");
 		return "Home";
 	}
 
 	@RequestMapping("/viewAll")
 	public String viewAllPage(Model m) {
-		System.out.println("HomeController.viewAllPage()");
+		LOGGER.info("HomeController.viewAllPage()");
 		m.addAttribute("msg", "Welcome From View All Page");
 		List<User> users = userService.getAllUsers();
 		m.addAttribute("users", users);
@@ -54,7 +59,7 @@ public class HomeController {
 
 	@RequestMapping("/save")
 	public RedirectView addUser(@ModelAttribute User user, Model model,RedirectAttributes ra) {   //returnType:RedirectView ,param:RedirectAttributes ra
-		System.out.println("HomeController.addUser()");
+		LOGGER.info("HomeController.addUser()");
 		String msg = userService.addUser(user);
 
 		ra.addAttribute("msg", msg);
@@ -73,7 +78,8 @@ public class HomeController {
 	 */
 	@GetMapping("/user/excelexport")
 	public void exportToExcel(HttpServletResponse response) throws IOException {
-
+		LOGGER.info("HomeController.exportToExcel()");
+		
 		response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE); // Content-type="application/octet-stream"
 
 		String headerKey = "Content-Disposition";
@@ -95,6 +101,8 @@ public class HomeController {
 	 */
 	@GetMapping("/user/pdfexport")
 	public void exportToPdf(HttpServletResponse response) throws DocumentException, IOException {
+		LOGGER.info("HomeController.exportToPdf()");
+		
 		response.setContentType(MediaType.APPLICATION_PDF_VALUE); // Content-type=application/pdf
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");

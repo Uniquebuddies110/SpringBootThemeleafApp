@@ -50,7 +50,7 @@ public class UserExcelExporter {
 			cell1.setCellValue(user.getName());
 
 			Cell cell2 = row.createCell(2);
-			cell2.setCellValue(user.getRole());
+			cell2.setCellValue(String.valueOf(user.getRoles()));
 			sequence++;
 		}
 		sequence = 2;

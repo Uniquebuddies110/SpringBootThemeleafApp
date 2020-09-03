@@ -43,6 +43,7 @@
 							th:object="${user}">
 							<h4 class="card-title">Register Page</h4>
 							<hr />
+
 							<div class="row">
 								<div class="col-sm-2">Name</div>
 								<div class="col-sm-8">
@@ -50,15 +51,21 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2">Role</div>
-								<div class="col-sm-8">
-									<select th:field="*{role}">
+								<div class="col-sm-2">Roles</div>
+								<div class="col-sm-8  form-check">
+									<!--<select th:field="*{roles}">
 										<option value="">Select Role</option>
 										<option value="STUDENT">Student</option>
 										<option value="TEACHER">Teacher</option>
-									</select>
+									</select> -->
+									<input type="checkbox" class="form-check-input"
+										th:field="*{roles}" th:value="STUDENT"> <label
+										class="form-check-label">Student</label> <br> <input
+										type="checkbox" class="form-check-input" th:field="*{roles}"
+										th:value="TEACHER"> <label class="form-check-label">Teacher</label>
 								</div>
 							</div>
+
 							<div class="row">
 								<div class="col-sm-2"></div>
 								<div class="col-sm-8">
