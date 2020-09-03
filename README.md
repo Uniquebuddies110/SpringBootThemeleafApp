@@ -16,4 +16,6 @@ Dependency required: groupId: org.apache.poi
 Dependency required: groupId: com.github.librepdf
 				artifactId: openpdf
 				version: 1.3.8
+				
+4. Integrating with MySQL Database and Log4j tools.
 
